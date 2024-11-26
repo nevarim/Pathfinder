@@ -6,9 +6,9 @@
       <button id="logout">Logout</button>
     </div>
   <% } else { %>
-    <form id="login-form">
-      <input type="text" placeholder="Username" required>
-      <input type="password" placeholder="Password" required>
+    <form id="login-form" action="/api/users/login" method="post">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
     <a href="javascript:void(0);" onclick="loadContent('register')">Register</a>

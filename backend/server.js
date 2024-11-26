@@ -11,7 +11,18 @@ app.set('views', path.join(__dirname, '../frontend'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Assicurati di impostare secure: true in produzione su HTTPS
+}));
+
+// Middleware per loggare le richieste
+app.use((req, res, next) => {
+  console.log(`Richiesta ricevuta: ${req.method} ${req.url}`);
+  next();
+});
 
 app.use('/api/users', userRoutes);
 

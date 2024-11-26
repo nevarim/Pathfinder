@@ -22,3 +22,75 @@ body {
     padding: 10px;
   }
   
+
+  
+
+
+
+
+
+
+
+  /* Aggiungi o aggiorna il seguente CSS al tuo style.css */
+.sidebar {
+  width: 150px; /* Diminuire la larghezza del menu */
+  position: fixed;
+  left: 10px; /* Lascia un po' di spazio dal bordo sinistro */
+  top: 50px; /* Lascia un po' di spazio dall'alto */
+  height: auto; /* Adatta l'altezza al contenuto */
+  background: #333;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra i pulsanti */
+}
+
+.sidebar.hidden {
+  transform: translateX(-150%); /* Nascondi il menu */
+}
+
+#menu-toggle {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#content {
+  padding-left: 180px; /* Adatta questo valore in base alla nuova larghezza del menu */
+}
+
+.sidebar button {
+  width: 100%; /* Fai in modo che i pulsanti siano della larghezza del menu */
+  margin: 10px 0; /* Spazio tra i pulsanti */
+  padding: 10px;
+  background: #444;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background: #555; /* Cambia il colore del pulsante al passaggio del mouse */
+}
+
+@media (max-width: 768px) {
+  #content {
+    padding-left: 0; /* Reset padding for smaller screens */
+  }
+
+  #menu-toggle {
+    position: absolute;
+  }
+
+  .sidebar {
+    top: 10px; /* Adjust the top position for smaller screens */
+  }
+}

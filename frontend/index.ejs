@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your App Title</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -12,19 +13,21 @@
 
   <!-- Content -->
   <div id="content">
-    <div id="menu">
+    <button id="menu-toggle">Menu</button>
+    <div id="sidebar" class="sidebar hidden">
       <button onclick="loadContent('home')">Homepage</button>
-      <button onclick="loadContent('Sheetlists')">List of sheets</button>
-      <!-- Aggiungi altri pulsanti secondo necessità -->
+      <button onclick="loadContent('register')">Register</button>
+      <button onclick="loadContent('configuration')">configuration</button>
+      <!-- Aggiungi altri pulsanti se necessario -->
     </div>
     <div id="page-content">
       <!-- Il contenuto dinamico verrà caricato qui -->
     </div>
+    <div id="login-result"></div> <!-- Aggiungi questo se manca -->
   </div>
 
   <!-- Footer -->
   <%- include('footer') %>
 
-  <script src="script.js"></script>
 </body>
 </html>
