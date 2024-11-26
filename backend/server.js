@@ -26,8 +26,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/:page', (req, res) => {
-  const page = req.params.page;
+app.get('/:page_content', (req, res) => {
+  const page = req.params.page_content;
   res.render(page);
 });
 
