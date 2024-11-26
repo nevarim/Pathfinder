@@ -1,36 +1,52 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const userRoutes = require('../backend/routes/userRoutes');
+document.addEventListener('DOMContentLoaded', () => {
+  window.loadContent = function(page) {  // Rendi la funzione accessibile globalmente
+    fetch(`/${page}_content`)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('page-content').innerHTML = data;
+        attachRegisterFormHandler(); // Assicura che il gestore dell'evento sia allegato
+      })
+      .catch(error => {
+        console.error('Error loading content:', error);
+      });
+  }
 
-const app = express();
+  function attachRegisterFormHandler() {
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+      registerForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Previene il comportamento predefinito del form
+        const formData = new FormData(registerForm);
+        const data = {
+          username: formData.get('username'),
+          password: formData.get('password')
+        };
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../frontend'));
+        try {
+          const response = await fetch('/api/users/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+          const resultElement = document.getElementById('registration-result');
+          if (response.ok) {
+            resultElement.textContent = 'Registration successful!';
+            loadContent('index'); // Ricarica la pagina principale dopo la registrazione
+          } else {
+            const errorText = await response.text();
+            resultElement.textContent = `Error: ${errorText}`;
+          }
+        } catch (error) {
+          console.error('Error during registration:', error);
+          resultElement.textContent = 'Error during registration. Please try again.';
+        }
+      });
+    }
+  }
 
-app.use('/api/users', userRoutes);
-
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-app.use((req, res, next) => {
-  res.locals.user = req.session.user;
-  next();
-});
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.get('/:page_content', (req, res) => {
-  const page = req.params.page_content;
-  res.render(page); // Assicurati che `page` corrisponda al nome del file EJS senza estensione
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+  // Carica la pagina iniziale e allega il gestore dell'evento per il modulo di registrazione
+  loadContent('index');
 });
