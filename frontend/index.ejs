@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your App Title</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <%- include('header') %>
+
+  <!-- Content -->
+  <div id="content">
+    <div id="menu">
+      <button onclick="loadContent('page1')">Page 1</button>
+      <button onclick="loadContent('page2')">Page 2</button>
+      <!-- Aggiungi altri pulsanti secondo necessità -->
+    </div>
+    <div id="page-content">
+      <!-- Il contenuto dinamico verrà caricato qui -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <%- include('footer') %>
+</body>
+</html>
