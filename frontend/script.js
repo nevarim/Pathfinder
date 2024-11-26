@@ -1,17 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  function loadContent(page) {
-    fetch(`/${page}_content`)
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('page-content').innerHTML = data;
-        attachRegisterFormHandler(); // Assicura che il gestore dell'evento sia allegato
-      })
-      .catch(error => {
-        console.error('Error loading content:', error);
-      });
-  }
-
-  function attachRegisterFormHandler() {
+   function attachRegisterFormHandler() {
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
       registerForm.addEventListener('submit', async (event) => {
@@ -34,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const resultElement = document.getElementById('registration-result');
           if (response.ok) {
             resultElement.textContent = 'Registration successful!';
-            loadContent('index'); // Ricarica la pagina principale dopo la registrazione
+            loadContent('register'); // Ricarica la pagina principale dopo la registrazione
           } else {
             const errorText = await response.text();
             resultElement.textContent = `Error: ${errorText}`;
@@ -48,5 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Carica la pagina iniziale e allega il gestore dell'evento per il modulo di registrazione
-  loadContent('index');
+  loadContent('home');
 });
+
+function loadContent(page) {
+  fetch('views/' + page + '.ejs')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('page-content').innerHTML = data;
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+}
