@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.get('/:page_content', (req, res) => {
   const page = req.params.page_content;
-  res.render(page);
+  res.render(page); // Assicurati che `page` corrisponda al nome del file EJS senza estensione
 });
 
 app.listen(3000, () => {
