@@ -24,6 +24,27 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/api/configuration/get', (req, res) => {
+  // Esempio di risposta JSON per la configurazione
+  res.json({ message: 'Configuration data retrieved successfully.' });
+});
+
+
+app.post('/api/configuration/set', (req, res) => {
+  // Recupera i dati inviati nella richiesta (assicurati che il corpo della richiesta sia JSON)
+  const configurationData = req.body;
+
+  // Qui gestisci la logica per salvare o aggiornare la configurazione
+  console.log('Received configuration data:', configurationData);
+
+  // Rispondi con un messaggio di successo
+  res.json({ message: 'Configuration set successfully' });
+});
+
+
+
+
+
 app.use('/api/users', userRoutes);
 
 app.use(express.static(path.join(__dirname, '../frontend')));

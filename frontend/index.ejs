@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your App Title</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -15,9 +14,9 @@
   <div id="content">
     <button id="menu-toggle">Menu</button>
     <div id="sidebar" class="sidebar hidden">
-      <button onclick="loadContent('home')">Homepage</button>
-      <button onclick="loadContent('register')">Register</button>
-      <button onclick="loadContent('configuration')">configuration</button>
+      <button id="home-button">Home</button>
+      <button id="register-button">Register</button>
+      <button id="configuration-button">Configuration</button>
       <!-- Aggiungi altri pulsanti se necessario -->
     </div>
     <div id="page-content">
@@ -25,6 +24,9 @@
     </div>
     <div id="login-result"></div> <!-- Aggiungi questo se manca -->
   </div>
+
+  <script type="module" src="/configJS/main.js"></script>
+  <script type="module" src="/configJS/auth.js"></script>
 
   <!-- Footer -->
   <%- include('footer') %>
