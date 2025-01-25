@@ -325,3 +325,88 @@ Pagina non trovata
   "is_active": true
 }
 ```
+
+
+
+### **21. Aggiungere un'Abilità**
+**Endpoint:** POST /ability/add
+
+- **URL:** `http://localhost:8080/ability/add`
+- **Descrizione:** Aggiunge una nuova abilità.
+- **vRichiesta JSON:**
+```json
+{
+  "name": "Magia Elementale",
+  "description": "Controllo degli elementi naturali"
+}
+```
+
+
+
+### **22. Modificare un'Abilità**
+**Endpoint:** POST /ability/edit
+
+- **URL:** `http://localhost:8080/ability/edit`
+- **Descrizione:** Modifica le informazioni di un'abilità esistente.
+- **Richiesta JSON:**
+```json
+{
+  "id": 1,
+  "name": "Magia Avanzata",
+  "description": "Controllo superiore degli elementi"
+}
+```
+
+
+### **23. Disattivare un'Abilità**
+**Endpoint:** POST /ability/inactivate
+
+- **URL:** `http://localhost:8080/ability/inactivate`
+- **Descrizione:** Disattiva un'abilità, rendendola non più attiva.
+- **Richiesta JSON:**
+```json
+{
+  "id": 1
+}
+```
+
+
+### **24. Ottenere tutte le Abilità**
+**Endpoint:** GET /ability/list
+
+- **URL:**** `http://localhost:8080/ability/list`
+- **Descrizione:** Ottieni tutte le abilità registrate.
+- **Risposta JSON:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Magia Elementale",
+    "description": "Controllo degli elementi naturali",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "name": "Forza Fisica",
+    "description": "Aumento della forza del corpo",
+    "is_active": true
+  }
+]
+```
+
+
+### **25. Ottenere un'Abilità per ID**
+**Endpoint:** GET /ability/{id}
+
+- **URL:** `http://localhost:8080/ability/{id}`
+- **Descrizione:** Ottieni un'abilità specifica tramite il suo ID.
+- **Risposta JSON:**
+```json
+{
+  "id": 1,
+  "name": "Magia Elementale",
+  "description": "Controllo degli elementi naturali",
+  "is_active": true
+}
+```
+
