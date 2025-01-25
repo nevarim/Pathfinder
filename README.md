@@ -435,7 +435,8 @@ Pagina non trovata
 {
   "race_id": 1,
   "ability_id": 2
-}```
+}
+```
 **Risposta JSON:**
 ```json
 {
@@ -495,7 +496,8 @@ Pagina non trovata
 ```json
 {
   "ability_id": 2
-}```
+}
+```
 **Risposta JSON:**
 ```json
 [
