@@ -423,11 +423,6 @@ Pagina non trovata
   "ability_id": 2,
   "value": 5
 }```
-**Risposta JSON:**
-```json
-{
-  "message": "Bonus assegnato con successo"
-}```
 
 ### **27. Rimuovere un Bonus/Malus da una Razza
 **Endpoint:** `POST /race/remove-ability`
