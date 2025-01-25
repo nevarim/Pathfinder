@@ -410,7 +410,6 @@ Pagina non trovata
 }
 ```
 
-
 ### **26. Assegnare un Bonus/Malus a una Razza
 **Endpoint:** `POST /race/assign-ability`
 
@@ -424,6 +423,7 @@ Pagina non trovata
   "value": 5
 }
 ```
+
 
 ### **27. Rimuovere un Bonus/Malus da una Razza
 **Endpoint:** `POST /race/remove-ability`
@@ -440,7 +440,8 @@ Pagina non trovata
 ```json
 {
   "message": "Bonus rimosso con successo"
-}```
+}
+```
 
 ### **28. Modificare un Bonus/Malus Esistente
 **Endpoint:** `POST /race/update-ability`
@@ -453,12 +454,14 @@ Pagina non trovata
   "race_id": 1,
   "ability_id": 2,
   "new_value": 10
-}```
+}
+```
 **Risposta JSON:**
 ```json
 {
   "message": "Bonus modificato con successo"
-}```
+}
+```
 
 ### **29. Recuperare Tutte le Abilità Modificate per una Razza
 **Endpoint:** `POST /race/get-abilities`
@@ -480,7 +483,8 @@ Pagina non trovata
     "ability_name": "Magia Elementale",
     "value": 5
   }
-]```
+]
+```
 
 ### **30. Recuperare Tutte le Razze che Modificano una Determinata Abilità
 **Endpoint:** `POST /race/get-races-by-ability`
@@ -502,5 +506,6 @@ Pagina non trovata
     "ability_name": "Magia Elementale",
     "value": 5
   }
-]```
+]
+```
 
