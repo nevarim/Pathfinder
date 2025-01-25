@@ -473,7 +473,8 @@ Pagina non trovata
 ```json
 {
   "race_id": 1
-}```
+}
+```
 **Risposta JSON:**
 ```json
 [
