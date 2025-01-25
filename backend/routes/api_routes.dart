@@ -5,6 +5,7 @@ import '../controllers/permission_controller.dart';
 import '../controllers/user_permission_controller.dart';
 import '../controllers/user_page_controller.dart';
 import '../controllers/race_controller.dart';
+import '../controllers/ability_controller.dart';
 
 
 
@@ -13,6 +14,7 @@ final permissionController = PermissionController();
 final userPermissionController = UserPermissionController();
 final userPageController = UserPageController();
 final raceController = RaceController();
+final abilityController = AbilityController();
 
 
 
@@ -49,6 +51,11 @@ Router defineApiRoutes() {
   router.get('/race/list', (Request request) async => raceController.getAllRaces(request));
   router.get('/race/<id>', (Request request, String id) async => raceController.getRaceById(request, id));
 
+  router.post('/ability/add', (Request request) async => abilityController.addAbility(request));
+  router.post('/ability/edit', (Request request) async => abilityController.editAbility(request));
+  router.post('/ability/inactivate', (Request request) async => abilityController.inactivateAbility(request));
+  router.get('/ability/list', (Request request) async => abilityController.getAllAbilities(request));
+  router.get('/ability/{id}', (Request request, String id) async => abilityController.getAbilityById(request, id));
 
 
 
@@ -64,6 +71,8 @@ Router defineApiRoutes() {
 
   return router;
 }
+
+
 
 
 
