@@ -422,7 +422,8 @@ Pagina non trovata
   "race_id": 1,
   "ability_id": 2,
   "value": 5
-}```
+}
+```
 
 ### **27. Rimuovere un Bonus/Malus da una Razza
 **Endpoint:** `POST /race/remove-ability`
