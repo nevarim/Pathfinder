@@ -312,7 +312,7 @@ Pagina non trovata
 ```
 
 ### **20. Ottenere una Razza per ID**
-**Endpoint: GET /race/{id}**
+**Endpoint:** `GET /race/{id}`
 
 - **URL:** `http://localhost:8080/race/1`
 - **Descrizione:** Restituisce i dettagli di una razza dato il suo ID.
@@ -329,7 +329,7 @@ Pagina non trovata
 
 
 ### **21. Aggiungere un'Abilità**
-**Endpoint:** POST /ability/add
+**Endpoint:** `POST /ability/add`
 
 - **URL:** `http://localhost:8080/ability/add`
 - **Descrizione:** Aggiunge una nuova abilità.
@@ -344,7 +344,7 @@ Pagina non trovata
 
 
 ### **22. Modificare un'Abilità**
-**Endpoint:** POST /ability/edit
+**Endpoint:** `POST /ability/edit`
 
 - **URL:** `http://localhost:8080/ability/edit`
 - **Descrizione:** Modifica le informazioni di un'abilità esistente.
@@ -359,7 +359,7 @@ Pagina non trovata
 
 
 ### **23. Disattivare un'Abilità**
-**Endpoint:** POST /ability/inactivate
+**Endpoint:** `POST /ability/inactivate`
 
 - **URL:** `http://localhost:8080/ability/inactivate`
 - **Descrizione:** Disattiva un'abilità, rendendola non più attiva.
@@ -372,7 +372,7 @@ Pagina non trovata
 
 
 ### **24. Ottenere tutte le Abilità**
-**Endpoint:** GET /ability/list
+**Endpoint:** `GET /ability/list`
 
 - **URL:**** `http://localhost:8080/ability/list`
 - **Descrizione:** Ottieni tutte le abilità registrate.
@@ -396,7 +396,7 @@ Pagina non trovata
 
 
 ### **25. Ottenere un'Abilità per ID**
-**Endpoint:** GET /ability/{id}
+**Endpoint:** `GET /ability/{id}`
 
 - **URL:** `http://localhost:8080/ability/{id}`
 - **Descrizione:** Ottieni un'abilità specifica tramite il suo ID.
