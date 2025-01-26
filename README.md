@@ -410,7 +410,7 @@ Pagina non trovata
 }
 ```
 
-### **26. Assegnare un Bonus/Malus a una Razza
+### **26. Assegnare un Bonus/Malus a una Razza**
 **Endpoint:** `POST /race/assign-ability`
 
 - **URL:** `http://localhost:8080/race/assign-ability`
@@ -425,7 +425,7 @@ Pagina non trovata
 ```
 
 
-### **27. Rimuovere un Bonus/Malus da una Razza
+### **27. Rimuovere un Bonus/Malus da una Razza**
 **Endpoint:** `POST /race/remove-ability`
 
 - **URL:** `http://localhost:8080/race/remove-ability`
@@ -444,7 +444,7 @@ Pagina non trovata
 }
 ```
 
-### **28. Modificare un Bonus/Malus Esistente
+### **28. Modificare un Bonus/Malus Esistente**
 **Endpoint:** `POST /race/update-ability`
 
 - **URL:** `http://localhost:8080/race/update-ability`
@@ -464,7 +464,7 @@ Pagina non trovata
 }
 ```
 
-### **29. Recuperare Tutte le Abilità Modificate per una Razza
+### **29. Recuperare Tutte le Abilità Modificate per una Razza**
 **Endpoint:** `POST /race/get-abilities`
 
 - **URL:** `http://localhost:8080/race/get-abilities`
@@ -488,7 +488,7 @@ Pagina non trovata
 ]
 ```
 
-### **30. Recuperare Tutte le Razze che Modificano una Determinata Abilità
+### **30. Recuperare Tutte le Razze che Modificano una Determinata Abilità**
 **Endpoint:** `POST /race/get-races-by-ability`
 
 - **URL:** `http://localhost:8080/race/get-races-by-ability`
