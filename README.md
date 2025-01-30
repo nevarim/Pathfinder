@@ -639,10 +639,10 @@ Pagina non trovata
 }
 ```
 
-### **37. Recuperare le Abilità di una Classe
-**Endpoint:** GET /classes/abilities
+### **37. Recuperare le Abilità di una Classe**
+**Endpoint:** `GET /classes/abilities`
 
-- **URL:** http://localhost:8080/classes/abilities
+- **URL:** `http://localhost:8080/classes/abilities`
 - **Descrizione:** Recupera tutte le abilità associate a una determinata classe, restituendo il livello, il bonus di attacco base e i salvataggi.
 - **Body (JSON):** N/A
 - **Risposta JSON:**
