@@ -620,39 +620,47 @@ Pagina non trovata
 **Endpoint:** `POST /classes/assign-ability`
 
 - **URL:** `http://localhost:8080/classes/assign-ability`
-- **Descrizione:** Assegna un bonus o malus a una classe per una determinata abilità.
+- **Descrizione:** Assegna un bonus o malus a una classe per una determinata abilità, specificando il livello, il bonus di attacco base e i salvataggi.
 - **Body (JSON):**
 ```json
 {
   "class_id": 1,
-  "ability_id": 2,
-  "value": 5
+  "level": 1,
+  "base_attack_bonus": "1",
+  "fort_save": 2,
+  "ref_save": 0,
+  "will_save": 0
 }
 ```
-
 - **Risposta JSON:**
-
 ```json
 {
   "message": "Bonus assegnato con successo"
 }
 ```
 
-### **37. Recuperare le Abilità di una Classe**
-**Endpoint:** `GET /classes/abilities`
+### **37. Recuperare le Abilità di una Classe
+**Endpoint:** GET /classes/abilities
 
-- **URL: `http://localhost:8080/classes/abilities`
-- **Descrizione: Recupera tutte le abilità associate a una determinata classe.
-- **Body (JSON): N/A
-- **Risposta JSON:
+- **URL:** http://localhost:8080/classes/abilities
+- **Descrizione:** Recupera tutte le abilità associate a una determinata classe, restituendo il livello, il bonus di attacco base e i salvataggi.
+- **Body (JSON):** N/A
+- **Risposta JSON:**
 ```json
 [
   {
-    "class_id": 1,
-    "class_name": "Guerriero",
-    "ability_id": 2,
-    "ability_name": "Forza Bruta",
-    "value": 5
+    "level": 1,
+    "base_attack_bonus": "1",
+    "fort_save": 2,
+    "ref_save": 0,
+    "will_save": 0
+  },
+  {
+    "level": 2,
+    "base_attack_bonus": "2",
+    "fort_save": 3,
+    "ref_save": 0,
+    "will_save": 0
   }
 ]
 ```
