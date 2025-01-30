@@ -437,7 +437,7 @@ Pagina non trovata
   "ability_id": 2
 }
 ```
-**Risposta JSON:**
+- **Risposta JSON:**
 ```json
 {
   "message": "Bonus rimosso con successo"
@@ -457,7 +457,7 @@ Pagina non trovata
   "new_value": 10
 }
 ```
-**Risposta JSON:**
+- **Risposta JSON:**
 ```json
 {
   "message": "Bonus modificato con successo"
@@ -475,7 +475,7 @@ Pagina non trovata
   "race_id": 1
 }
 ```
-**Risposta JSON:**
+- **Risposta JSON:**
 ```json
 [
   {
@@ -499,7 +499,7 @@ Pagina non trovata
   "ability_id": 2
 }
 ```
-**Risposta JSON:**
+- **Risposta JSON:**
 ```json
 [
   {
@@ -512,3 +512,147 @@ Pagina non trovata
 ]
 ```
 
+
+### **31. Recuperare Tutte le Classi Disponibili**
+**Endpoint:** `GET /classes`
+
+- **URL:** `http://localhost:8080/classes`
+- **Descrizione:** Recupera tutte le classi disponibili nel sistema.
+- **Risposta JSON:**
+```json
+[
+  {
+    "class_id": 1,
+    "class_name": "Guerriero",
+    "description": "Una classe che si concentra sul combattimento fisico.",
+    "is_active": true
+  },
+  {
+    "class_id": 2,
+    "class_name": "Mago",
+    "description": "Una classe che si specializza nelle arti magiche.",
+    "is_active": true
+  }
+]
+```
+
+### **32. Recuperare i Dettagli di una Classe**
+**Endpoint:** `GET /classes/{id}`
+
+- **URL:** `http://localhost:8080/classes/{id}`
+- **Descrizione:** Recupera i dettagli di una classe specifica, identificata dall'ID.
+- **Body (JSON):** N/A
+- **Risposta JSON:**
+```json
+{
+  "class_id": 1,
+  "class_name": "Guerriero",
+  "description": "Una classe che si concentra sul combattimento fisico.",
+  "is_active": true
+}
+```
+
+### **33. Aggiungere una Nuova Classe**
+**Endpoint:** `POST /classes/add`
+
+- **URL:** `http://localhost:8080/classes/add`
+- **Descrizione:** Aggiunge una nuova classe al sistema.
+- **Body (JSON):**
+```json
+{
+  "class_name": "Guerriero",
+  "description": "Una classe che si concentra sul combattimento fisico.",
+  "is_active": true
+}
+```
+- **Risposta JSON:
+
+```json
+{
+  "message": "Classe aggiunta con successo",
+  "class_id": 1
+}
+```
+
+### **34. Modificare una Classe Esistente**
+**Endpoint:** `POST /classes/edit`
+
+- **URL:** `http://localhost:8080/classes/edit`
+- **Descrizione:** Modifica una classe esistente identificata dal suo ID.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1,
+  "class_name": "Guerriero",
+  "description": "Una classe esperta in combattimenti corpo a corpo.",
+  "is_active": true
+}
+```
+- **Risposta JSON:**
+
+```json
+{
+  "message": "Classe modificata con successo"
+}
+```
+
+### **35. Disattivare una Classe**
+**Endpoint:** `POST /classes/inactivate`
+
+- **URL:** `http://localhost:8080/classes/inactivate`
+- **Descrizione:** Disattiva una classe esistente, cambiando il suo stato is_active a false.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1
+}
+```
+
+- **Risposta JSON:**
+
+```json
+{
+  "message": "Classe disattivata con successo"
+}
+```
+
+### **36. Assegnare un Bonus a una Classe**
+**Endpoint:** `POST /classes/assign-ability`
+
+- **URL:** `http://localhost:8080/classes/assign-ability`
+- **Descrizione:** Assegna un bonus o malus a una classe per una determinata abilità.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1,
+  "ability_id": 2,
+  "value": 5
+}
+```
+
+- **Risposta JSON:**
+
+```json
+{
+  "message": "Bonus assegnato con successo"
+}
+```
+
+### **37. Recuperare le Abilità di una Classe**
+**Endpoint:** `GET /classes/abilities`
+
+- **URL: `http://localhost:8080/classes/abilities`
+- **Descrizione: Recupera tutte le abilità associate a una determinata classe.
+- **Body (JSON): N/A
+- **Risposta JSON:
+```json
+[
+  {
+    "class_id": 1,
+    "class_name": "Guerriero",
+    "ability_id": 2,
+    "ability_name": "Forza Bruta",
+    "value": 5
+  }
+]
+```
