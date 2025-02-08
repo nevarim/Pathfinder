@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "async",
-      "rootUri": "file:///C:/Users/Test/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.12.0",
+      "rootUri": "file:///C:/Users/Test/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -134,8 +134,8 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-01-23T08:50:19.257039Z",
+  "generated": "2025-02-08T16:54:42.554113Z",
   "generator": "pub",
-  "generatorVersion": "3.6.1",
+  "generatorVersion": "3.6.2",
   "pubCache": "file:///C:/Users/Test/AppData/Local/Pub/Cache"
 }

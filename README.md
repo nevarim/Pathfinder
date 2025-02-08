@@ -312,7 +312,7 @@ Pagina non trovata
 ```
 
 ### **20. Ottenere una Razza per ID**
-**Endpoint: GET /race/{id}**
+**Endpoint:** `GET /race/{id}`
 
 - **URL:** `http://localhost:8080/race/1`
 - **Descrizione:** Restituisce i dettagli di una razza dato il suo ID.
@@ -329,7 +329,7 @@ Pagina non trovata
 
 
 ### **21. Aggiungere un'Abilità**
-**Endpoint:** POST /ability/add
+**Endpoint:** `POST /ability/add`
 
 - **URL:** `http://localhost:8080/ability/add`
 - **Descrizione:** Aggiunge una nuova abilità.
@@ -344,7 +344,7 @@ Pagina non trovata
 
 
 ### **22. Modificare un'Abilità**
-**Endpoint:** POST /ability/edit
+**Endpoint:** `POST /ability/edit`
 
 - **URL:** `http://localhost:8080/ability/edit`
 - **Descrizione:** Modifica le informazioni di un'abilità esistente.
@@ -359,7 +359,7 @@ Pagina non trovata
 
 
 ### **23. Disattivare un'Abilità**
-**Endpoint:** POST /ability/inactivate
+**Endpoint:** `POST /ability/inactivate`
 
 - **URL:** `http://localhost:8080/ability/inactivate`
 - **Descrizione:** Disattiva un'abilità, rendendola non più attiva.
@@ -372,7 +372,7 @@ Pagina non trovata
 
 
 ### **24. Ottenere tutte le Abilità**
-**Endpoint:** GET /ability/list
+**Endpoint:** `GET /ability/list`
 
 - **URL:**** `http://localhost:8080/ability/list`
 - **Descrizione:** Ottieni tutte le abilità registrate.
@@ -396,7 +396,7 @@ Pagina non trovata
 
 
 ### **25. Ottenere un'Abilità per ID**
-**Endpoint:** GET /ability/{id}
+**Endpoint:** `GET /ability/{id}`
 
 - **URL:** `http://localhost:8080/ability/{id}`
 - **Descrizione:** Ottieni un'abilità specifica tramite il suo ID.
@@ -410,3 +410,257 @@ Pagina non trovata
 }
 ```
 
+### **26. Assegnare un Bonus/Malus a una Razza**
+**Endpoint:** `POST /race/assign-ability`
+
+- **URL:** `http://localhost:8080/race/assign-ability`
+- **Descrizione:** Assegna un bonus o malus a una razza. Se l'abilità è null, viene assegnato un bonus generico.
+- **Body (JSON):**
+```json
+{
+  "race_id": 1,
+  "ability_id": 2,
+  "value": 5
+}
+```
+
+
+### **27. Rimuovere un Bonus/Malus da una Razza**
+**Endpoint:** `POST /race/remove-ability`
+
+- **URL:** `http://localhost:8080/race/remove-ability`
+- **Descrizione:** Rimuove un bonus o malus assegnato a una razza.
+- **Body (JSON):**
+```json
+{
+  "race_id": 1,
+  "ability_id": 2
+}
+```
+- **Risposta JSON:**
+```json
+{
+  "message": "Bonus rimosso con successo"
+}
+```
+
+### **28. Modificare un Bonus/Malus Esistente**
+**Endpoint:** `POST /race/update-ability`
+
+- **URL:** `http://localhost:8080/race/update-ability`
+- **Descrizione:** Modifica un bonus o malus esistente per una razza.
+- **Body (JSON):**
+```json
+{
+  "race_id": 1,
+  "ability_id": 2,
+  "new_value": 10
+}
+```
+- **Risposta JSON:**
+```json
+{
+  "message": "Bonus modificato con successo"
+}
+```
+
+### **29. Recuperare Tutte le Abilità Modificate per una Razza**
+**Endpoint:** `POST /race/get-abilities`
+
+- **URL:** `http://localhost:8080/race/get-abilities`
+- **Descrizione:** Recupera tutte le abilità assegnate a una razza.
+- **Body (JSON):**
+```json
+{
+  "race_id": 1
+}
+```
+- **Risposta JSON:**
+```json
+[
+  {
+    "race_id": 1,
+    "race_name": "Elfo",
+    "ability_id": 2,
+    "ability_name": "Magia Elementale",
+    "value": 5
+  }
+]
+```
+
+### **30. Recuperare Tutte le Razze che Modificano una Determinata Abilità**
+**Endpoint:** `POST /race/get-races-by-ability`
+
+- **URL:** `http://localhost:8080/race/get-races-by-ability`
+- **Descrizione:** Recupera tutte le razze che hanno un bonus/malus su una determinata abilità.
+- **Body (JSON):**
+```json
+{
+  "ability_id": 2
+}
+```
+- **Risposta JSON:**
+```json
+[
+  {
+    "race_id": 1,
+    "race_name": "Elfo",
+    "ability_id": 2,
+    "ability_name": "Magia Elementale",
+    "value": 5
+  }
+]
+```
+
+
+### **31. Recuperare Tutte le Classi Disponibili**
+**Endpoint:** `GET /classes`
+
+- **URL:** `http://localhost:8080/classes`
+- **Descrizione:** Recupera tutte le classi disponibili nel sistema.
+- **Risposta JSON:**
+```json
+[
+  {
+    "class_id": 1,
+    "class_name": "Guerriero",
+    "description": "Una classe che si concentra sul combattimento fisico.",
+    "is_active": true
+  },
+  {
+    "class_id": 2,
+    "class_name": "Mago",
+    "description": "Una classe che si specializza nelle arti magiche.",
+    "is_active": true
+  }
+]
+```
+
+### **32. Recuperare i Dettagli di una Classe**
+**Endpoint:** `GET /classes/{id}`
+
+- **URL:** `http://localhost:8080/classes/{id}`
+- **Descrizione:** Recupera i dettagli di una classe specifica, identificata dall'ID.
+- **Body (JSON):** N/A
+- **Risposta JSON:**
+```json
+{
+  "class_id": 1,
+  "class_name": "Guerriero",
+  "description": "Una classe che si concentra sul combattimento fisico.",
+  "is_active": true
+}
+```
+
+### **33. Aggiungere una Nuova Classe**
+**Endpoint:** `POST /classes/add`
+
+- **URL:** `http://localhost:8080/classes/add`
+- **Descrizione:** Aggiunge una nuova classe al sistema.
+- **Body (JSON):**
+```json
+{
+  "class_name": "Guerriero",
+  "description": "Una classe che si concentra sul combattimento fisico.",
+  "is_active": true
+}
+```
+- **Risposta JSON:
+
+```json
+{
+  "message": "Classe aggiunta con successo",
+  "class_id": 1
+}
+```
+
+### **34. Modificare una Classe Esistente**
+**Endpoint:** `POST /classes/edit`
+
+- **URL:** `http://localhost:8080/classes/edit`
+- **Descrizione:** Modifica una classe esistente identificata dal suo ID.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1,
+  "class_name": "Guerriero",
+  "description": "Una classe esperta in combattimenti corpo a corpo.",
+  "is_active": true
+}
+```
+- **Risposta JSON:**
+
+```json
+{
+  "message": "Classe modificata con successo"
+}
+```
+
+### **35. Disattivare una Classe**
+**Endpoint:** `POST /classes/inactivate`
+
+- **URL:** `http://localhost:8080/classes/inactivate`
+- **Descrizione:** Disattiva una classe esistente, cambiando il suo stato is_active a false.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1
+}
+```
+
+- **Risposta JSON:**
+
+```json
+{
+  "message": "Classe disattivata con successo"
+}
+```
+
+### **36. Assegnare un Bonus a una Classe**
+**Endpoint:** `POST /classes/assign-ability`
+
+- **URL:** `http://localhost:8080/classes/assign-ability`
+- **Descrizione:** Assegna un bonus o malus a una classe per una determinata abilità, specificando il livello, il bonus di attacco base e i salvataggi.
+- **Body (JSON):**
+```json
+{
+  "class_id": 1,
+  "level": 1,
+  "base_attack_bonus": "1",
+  "fort_save": 2,
+  "ref_save": 0,
+  "will_save": 0
+}
+```
+- **Risposta JSON:**
+```json
+{
+  "message": "Bonus assegnato con successo"
+}
+```
+
+### **37. Recuperare le Abilità di una Classe**
+**Endpoint:** `GET /classes/abilities`
+
+- **URL:** `http://localhost:8080/classes/abilities`
+- **Descrizione:** Recupera tutte le abilità associate a una determinata classe, restituendo il livello, il bonus di attacco base e i salvataggi.
+- **Body (JSON):** N/A
+- **Risposta JSON:**
+```json
+[
+  {
+    "level": 1,
+    "base_attack_bonus": "1",
+    "fort_save": 2,
+    "ref_save": 0,
+    "will_save": 0
+  },
+  {
+    "level": 2,
+    "base_attack_bonus": "2",
+    "fort_save": 3,
+    "ref_save": 0,
+    "will_save": 0
+  }
+]
+```
