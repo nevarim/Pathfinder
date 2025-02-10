@@ -1,37 +1,104 @@
 import '../database.dart';
-import '../models/class.dart';
+import 'dart:convert';  // Per utf8.decode()
+import 'dart:typed_data';  // Per Uint8List
 
 class ClassService {
-  Future<List<Class>> getAllClasses() async {
-    final conn = await DatabaseHelper().connection;
-    final results = await conn.query('SELECT id, name, is_active FROM classes');
-    return results.map((row) => Class.fromJson(row.fields)).toList();
-  }
+  Future<String> addClass(String name, String description) async {
+    try {
+      final conn = await DatabaseHelper().connection;
+      var result = await conn.query(
+        'INSERT INTO path_class (name, description, is_active) VALUES (?, ?, ?)',
+        [name, description, true]
+      );
 
-  Future<Class?> getClassById(int id) async {
-    final conn = await DatabaseHelper().connection;
-    final results = await conn.query(
-      'SELECT id, name, is_active FROM classes WHERE id = ?',
-      [id],
-    );
-    if (results.isNotEmpty) {
-      return Class.fromJson(results.first.fields);
+      if (result.affectedRows == 1) {
+        return 'Classe aggiunta con successo';
+      } else {
+        return 'Errore nell\'aggiunta della classe';
+      }
+    } catch (e) {
+      return 'Errore: $e';
     }
-    return null;
   }
 
-  Future<void> addClass(String name) async {
-    final conn = await DatabaseHelper().connection;
-    await conn.query('INSERT INTO classes (name, is_active) VALUES (?, ?)', [name, 1]);
+  Future<String> editClass(int id, String newName, String newDescription) async {
+    try {
+      final conn = await DatabaseHelper().connection;
+      var result = await conn.query(
+        'UPDATE path_class SET name = ?, description = ? WHERE id = ?',
+        [newName, newDescription, id]
+      );
+
+      return result.affectedRows == 1 
+          ? 'Classe modificata con successo' 
+          : 'Errore nella modifica della classe';
+    } catch (e) {
+      return 'Errore: $e';
+    }
   }
 
-  Future<void> updateClass(int id, String name) async {
-    final conn = await DatabaseHelper().connection;
-    await conn.query('UPDATE classes SET name = ? WHERE id = ?', [name, id]);
+  Future<String> inactivateClass(int id) async {
+    try {
+      final conn = await DatabaseHelper().connection;
+      var result = await conn.query(
+        'UPDATE path_class SET is_active = ? WHERE id = ?',
+        [false, id]
+      );
+
+      return result.affectedRows == 1 
+          ? 'Classe disattivata con successo' 
+          : 'Errore nella disattivazione della classe';
+    } catch (e) {
+      return 'Errore: $e';
+    }
   }
 
-  Future<void> deactivateClass(int id) async {
-    final conn = await DatabaseHelper().connection;
-    await conn.query('UPDATE classes SET is_active = 0 WHERE id = ?', [id]);
+  // Nuova funzione per ottenere tutte le classi
+  Future<List<Map<String, dynamic>>> getAllClasses() async {
+    try {
+      final conn = await DatabaseHelper().connection;
+      var results = await conn.query('SELECT * FROM path_class');
+
+      return results.map((row) {
+        var description = row['description'];
+
+        // Conversione corretta della descrizione (se BLOB/TEXT)
+        if (description is Uint8List) {
+          description = utf8.decode(description);
+        } else if (description != null) {
+          description = description.toString();
+        }
+
+        return {
+          'id': row['id'],
+          'name': row['name'].toString(),
+          'description': description,
+          'is_active': (row['is_active'] == 1),  // Converte 1/0 in bool
+        };
+      }).toList();
+    } catch (e) {
+      throw 'Errore: $e';
+    }
+  }
+
+  // Nuova funzione per ottenere una classe per ID
+  Future<Map<String, dynamic>?> getClassById(int id) async {
+    try {
+      final conn = await DatabaseHelper().connection;
+      var result = await conn.query('SELECT * FROM path_class WHERE id = ?', [id]);
+      if (result.isNotEmpty) {
+        var row = result.first;
+        return {
+          'id': row['id'],
+          'name': row['name'],
+          'description': row['description'],
+          'is_active': row['is_active']
+        };
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw 'Errore: $e';
+    }
   }
 }

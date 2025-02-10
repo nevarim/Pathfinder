@@ -5,59 +5,81 @@ import '../services/class_service.dart';
 class ClassController {
   final ClassService classService = ClassService();
 
+  Future<Response> addClass(Request request) async {
+    try {
+      final body = await request.readAsString();
+      final jsonData = json.decode(body);
+
+      if (!jsonData.containsKey('name') || !jsonData.containsKey('description')) {
+        return Response(400, body: 'Nome o descrizione classe mancanti');
+      }
+
+      String name = jsonData['name'];
+      String description = jsonData['description'];
+
+      String result = await classService.addClass(name, description);
+      return Response.ok(result);
+    } catch (e) {
+      return Response.internalServerError(body: 'Errore: $e');
+    }
+  }
+
+  Future<Response> editClass(Request request) async {
+    try {
+      final body = await request.readAsString();
+      final jsonData = json.decode(body);
+
+      if (!jsonData.containsKey('id') || !jsonData.containsKey('name') || !jsonData.containsKey('description')) {
+        return Response(400, body: 'Dati mancanti');
+      }
+
+      int id = jsonData['id'];
+      String name = jsonData['name'];
+      String description = jsonData['description'];
+
+      String result = await classService.editClass(id, name, description);
+      return Response.ok(result);
+    } catch (e) {
+      return Response.internalServerError(body: 'Errore: $e');
+    }
+  }
+
+  Future<Response> inactivateClass(Request request) async {
+    try {
+      final body = await request.readAsString();
+      final jsonData = json.decode(body);
+
+      if (!jsonData.containsKey('id')) {
+        return Response(400, body: 'ID classe mancante');
+      }
+
+      int id = jsonData['id'];
+      String result = await classService.inactivateClass(id);
+      return Response.ok(result);
+    } catch (e) {
+      return Response.internalServerError(body: 'Errore: $e');
+    }
+  }
+
   Future<Response> getAllClasses(Request request) async {
     try {
       final classes = await classService.getAllClasses();
-      return Response.ok(jsonEncode(classes.map((c) => c.toJson()).toList()),
-          headers: {'Content-Type': 'application/json'});
+      return Response.ok(jsonEncode(classes), headers: {'Content-Type': 'application/json'});
     } catch (e) {
-      return Response.internalServerError(body: jsonEncode({'error': e.toString()}));
+      return Response.internalServerError(body: jsonEncode({'errore': e.toString()}), headers: {'Content-Type': 'application/json'});
     }
   }
 
   Future<Response> getClassById(Request request, String id) async {
     try {
-      final classId = int.parse(id);
-      final classData = await classService.getClassById(classId);
+      final classData = await classService.getClassById(int.parse(id));
       if (classData != null) {
-        return Response.ok(jsonEncode(classData.toJson()),
-            headers: {'Content-Type': 'application/json'});
+        return Response.ok(json.encode(classData), headers: {'Content-Type': 'application/json'});
       } else {
-        return Response.notFound(jsonEncode({'error': 'Class not found'}));
+        return Response(404, body: 'Classe non trovata');
       }
     } catch (e) {
-      return Response.internalServerError(body: jsonEncode({'error': e.toString()}));
-    }
-  }
-
-  Future<Response> addClass(Request request) async {
-    try {
-      final payload = jsonDecode(await request.readAsString());
-      await classService.addClass(payload['name']);
-      return Response.ok(jsonEncode({'message': 'Class added successfully'}));
-    } catch (e) {
-      return Response.internalServerError(body: jsonEncode({'error': e.toString()}));
-    }
-  }
-
-  Future<Response> updateClass(Request request, String id) async {
-    try {
-      final classId = int.parse(id);
-      final payload = jsonDecode(await request.readAsString());
-      await classService.updateClass(classId, payload['name']);
-      return Response.ok(jsonEncode({'message': 'Class updated successfully'}));
-    } catch (e) {
-      return Response.internalServerError(body: jsonEncode({'error': e.toString()}));
-    }
-  }
-
-  Future<Response> deactivateClass(Request request, String id) async {
-    try {
-      final classId = int.parse(id);
-      await classService.deactivateClass(classId);
-      return Response.ok(jsonEncode({'message': 'Class deactivated successfully'}));
-    } catch (e) {
-      return Response.internalServerError(body: jsonEncode({'error': e.toString()}));
+      return Response.internalServerError(body: 'Errore: $e');
     }
   }
 }

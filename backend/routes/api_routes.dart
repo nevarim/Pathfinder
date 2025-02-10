@@ -1,3 +1,6 @@
+//api_routes.dart
+
+
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import '../controllers/auth_controller.dart';
@@ -60,52 +63,34 @@ Router defineApiRoutes() {
           permissionController.getUserPermissions(request, user_id));
 
   // Razze
-  router.post(
-      '/race/add', (Request request) async => raceController.addRace(request));
-  router.post('/race/edit',
-      (Request request) async => raceController.editRace(request));
-  router.post('/race/inactivate',
-      (Request request) async => raceController.inactivateRace(request));
-  router.get('/race/list',
-      (Request request) async => raceController.getAllRaces(request));
-  router.get(
-      '/race/<id>',
-      (Request request, String id) async =>
-          raceController.getRaceById(request, id));
+  router.post('/race/add', (Request request) async => raceController.addRace(request));
+  router.post('/race/edit',(Request request) async => raceController.editRace(request));
+  router.post('/race/inactivate',(Request request) async => raceController.inactivateRace(request));
+  router.get('/race/list',(Request request) async => raceController.getAllRaces(request));
+  router.get('/race/<id>',(Request request, String id) async => raceController.getRaceById(request, id));
 
-  router.post('/race/assign-ability',
-      (Request request) async => raceController.assignRaceAbility(request));
-  router.post('/race/remove-ability',
-      (Request request) async => raceController.removeRaceAbility(request));
-  router.post('/race/update-ability',
-      (Request request) async => raceController.updateRaceAbility(request));
-  router.post('/race/get-abilities',
-      (Request request) async => raceController.getRaceAbilities(request));
-  router.post('/race/get-races-by-ability',
-      (Request request) async => raceController.getRacesByAbility(request));
+  router.post('/race/assign-ability',(Request request) async => raceController.assignRaceAbility(request));
+  router.post('/race/remove-ability',(Request request) async => raceController.removeRaceAbility(request));
+  router.post('/race/update-ability',(Request request) async => raceController.updateRaceAbility(request));
+  router.post('/race/get-abilities',(Request request) async => raceController.getRaceAbilities(request));
+  router.post('/race/get-races-by-ability',(Request request) async => raceController.getRacesByAbility(request));
 
   // Abilità
-  router.post('/ability/add',
-      (Request request) async => abilityController.addAbility(request));
-  router.post('/ability/edit',
-      (Request request) async => abilityController.editAbility(request));
-  router.post('/ability/inactivate',
-      (Request request) async => abilityController.inactivateAbility(request));
-  router.get('/ability/list',
-      (Request request) async => abilityController.getAllAbilities(request));
-  router.get(
-      '/ability/{id}',
-      (Request request, String id) async =>
-          abilityController.getAbilityById(request, id));
+  router.post('/ability/add',(Request request) async => abilityController.addAbility(request));
+  router.post('/ability/edit',(Request request) async => abilityController.editAbility(request));
+  router.post('/ability/inactivate',(Request request) async => abilityController.inactivateAbility(request));
+  router.get('/ability/list',(Request request) async => abilityController.getAllAbilities(request));
+  router.get('/ability/{id}',(Request request, String id) async =>abilityController.getAbilityById(request, id));
 
 
+// Classi
+router.post('/class/add', (Request request) async => classController.addClass(request));
+router.post('/class/edit', (Request request) async => classController.editClass(request));
+router.post('/class/inactivate', (Request request) async => classController.inactivateClass(request));
+router.get('/class/list', (Request request) async => classController.getAllClasses(request));
+router.get('/class/<id>', (Request request, String id) async => classController.getClassById(request, id));
 
 
-  router.get('/classes', classController.getAllClasses);
-  router.get('/classes/<id>', classController.getClassById);
-  router.post('/classes', classController.addClass);
-  router.put('/classes/<id>', classController.updateClass);
-  router.delete('/classes/<id>', classController.deactivateClass);
 
   return router;
 }
