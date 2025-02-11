@@ -616,51 +616,74 @@ Pagina non trovata
 }
 ```
 
-### **36. Assegnare un Bonus a una Classe**
-**Endpoint:** `POST /classes/assign-ability`
 
-- **URL:** `http://localhost:8080/classes/assign-ability`
-- **Descrizione:** Assegna un bonus o malus a una classe per una determinata abilità, specificando il livello, il bonus di attacco base e i salvataggi.
-- **Body (JSON):**
+### **36. Assegnare un Livello a una Classe per un Personaggio
+Endpoint: POST /classes/level/add
+
+- **URL: http://localhost:8080/classes/level/add
+- **Descrizione: Aggiunge un livello di una classe a un personaggio esistente. Se il personaggio ha già la classe, aumenta il livello.
+- **Body (JSON):
+```json
+{
+  "sheet_id": 1,
+  "class_id": 2
+}
+```
+- **Risposta JSON:
+```json
+{
+  "message": "Livello aggiunto con successo"
+}
+```
+
+### **37. Rimuovere un Livello da una Classe di un Personaggio
+- **Endpoint: POST /classes/level/remove
+
+- **URL: http://localhost:8080/classes/level/remove
+- **Descrizione: Rimuove un livello dalla classe di un personaggio. Se il livello scende a 0, la classe viene rimossa.
+- **Body (JSON):
+```json
+{
+  "sheet_id": 1,
+  "class_id": 2
+}
+- **Risposta JSON:
+- **json
+{
+  "message": "Livello rimosso con successo"
+}
+```
+### **38. Recuperare la Lista dei Livelli di una Classe
+Endpoint: GET /classes/level/list/{classId}
+
+URL: http://localhost:8080/classes/level/list/{classId}
+Descrizione: Recupera tutti i livelli disponibili per una classe specifica.
+Risposta JSON:
 ```json
 {
   "class_id": 1,
-  "level": 1,
-  "base_attack_bonus": "1",
-  "fort_save": 2,
-  "ref_save": 0,
-  "will_save": 0
+  "levels": [
+    {
+      "level": 1,
+      "abilities": ["Colpo Possente", "Difesa Resistente"]
+    },
+    {
+      "level": 2,
+      "abilities": ["Attacco Extra"]
+    }
+  ]
 }
-```
-- **Risposta JSON:**
+
+### **39. Recuperare i Dettagli di un Livello Specifico di una Classe
+Endpoint: GET /classes/level/{classId}/{level}
+
+URL: http://localhost:8080/classes/level/{classId}/{level}
+Descrizione: Recupera i dettagli di un livello specifico di una classe.
+Risposta JSON:
 ```json
 {
-  "message": "Bonus assegnato con successo"
+  "class_id": 1,
+  "level": 2,
+  "abilities": ["Attacco Extra"]
 }
-```
-
-### **37. Recuperare le Abilità di una Classe**
-**Endpoint:** `GET /classes/abilities`
-
-- **URL:** `http://localhost:8080/classes/abilities`
-- **Descrizione:** Recupera tutte le abilità associate a una determinata classe, restituendo il livello, il bonus di attacco base e i salvataggi.
-- **Body (JSON):** N/A
-- **Risposta JSON:**
-```json
-[
-  {
-    "level": 1,
-    "base_attack_bonus": "1",
-    "fort_save": 2,
-    "ref_save": 0,
-    "will_save": 0
-  },
-  {
-    "level": 2,
-    "base_attack_bonus": "2",
-    "fort_save": 3,
-    "ref_save": 0,
-    "will_save": 0
-  }
-]
 ```
