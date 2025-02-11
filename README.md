@@ -618,7 +618,7 @@ Pagina non trovata
 
 
 ### **36. Assegnare un Livello a una Classe per un Personaggio**
-Endpoint: POST /classes/level/add
+**Endpoint:** `POST /classes/level/add`
 
 - **URL: http://localhost:8080/classes/level/add
 - **Descrizione: Aggiunge un livello di una classe a un personaggio esistente. Se il personaggio ha già la classe, aumenta il livello.
@@ -637,7 +637,7 @@ Endpoint: POST /classes/level/add
 ```
 
 ### **37. Rimuovere un Livello da una Classe di un Personaggio**
-- **Endpoint: POST /classes/level/remove
+**Endpoint:** `POST /classes/level/remove`
 
 - **URL: http://localhost:8080/classes/level/remove
 - **Descrizione: Rimuove un livello dalla classe di un personaggio. Se il livello scende a 0, la classe viene rimossa.
@@ -654,7 +654,7 @@ Endpoint: POST /classes/level/add
 }
 ```
 ### **38. Recuperare la Lista dei Livelli di una Classe**
-Endpoint: GET /classes/level/list/{classId}
+**Endpoint:** `GET /classes/level/list/{classId}`
 
 URL: http://localhost:8080/classes/level/list/{classId}
 Descrizione: Recupera tutti i livelli disponibili per una classe specifica.
@@ -675,7 +675,7 @@ Risposta JSON:
 }
 ```
 ### **39. Recuperare i Dettagli di un Livello Specifico di una Classe**
-Endpoint: GET /classes/level/{classId}/{level}
+**Endpoint:** `GET /classes/level/{classId}/{level}`
 
 URL: http://localhost:8080/classes/level/{classId}/{level}
 Descrizione: Recupera i dettagli di un livello specifico di una classe.
