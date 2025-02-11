@@ -617,7 +617,7 @@ Pagina non trovata
 ```
 
 
-### **36. Assegnare un Livello a una Classe per un Personaggio
+### **36. Assegnare un Livello a una Classe per un Personaggio**
 Endpoint: POST /classes/level/add
 
 - **URL: http://localhost:8080/classes/level/add
@@ -636,7 +636,7 @@ Endpoint: POST /classes/level/add
 }
 ```
 
-### **37. Rimuovere un Livello da una Classe di un Personaggio
+### **37. Rimuovere un Livello da una Classe di un Personaggio**
 - **Endpoint: POST /classes/level/remove
 
 - **URL: http://localhost:8080/classes/level/remove
@@ -653,7 +653,7 @@ Endpoint: POST /classes/level/add
   "message": "Livello rimosso con successo"
 }
 ```
-### **38. Recuperare la Lista dei Livelli di una Classe
+### **38. Recuperare la Lista dei Livelli di una Classe**
 Endpoint: GET /classes/level/list/{classId}
 
 URL: http://localhost:8080/classes/level/list/{classId}
@@ -674,7 +674,7 @@ Risposta JSON:
   ]
 }
 
-### **39. Recuperare i Dettagli di un Livello Specifico di una Classe
+### **39. Recuperare i Dettagli di un Livello Specifico di una Classe**
 Endpoint: GET /classes/level/{classId}/{level}
 
 URL: http://localhost:8080/classes/level/{classId}/{level}
