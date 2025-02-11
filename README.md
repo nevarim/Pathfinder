@@ -647,8 +647,9 @@ Pagina non trovata
   "sheet_id": 1,
   "class_id": 2
 }
-- **Risposta JSON:
-- **json
+```
+- **Risposta JSON:**
+```json
 {
   "message": "Livello rimosso con successo"
 }
