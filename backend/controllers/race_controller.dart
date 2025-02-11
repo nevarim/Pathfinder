@@ -72,6 +72,7 @@ class RaceController {
   }
 
   // Nuova funzione per ottenere una razza per ID
+  
   Future<Response> getRaceById(Request request, String id) async {
     try {
       final race = await raceService.getRaceById(int.parse(id));

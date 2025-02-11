@@ -181,66 +181,65 @@ class RaceService {
     }
   }
 
+  Future<List<Map<String, dynamic>>> getRaceAbilities(int raceId) async {
+    try {
+      final conn = await DatabaseHelper().connection;
 
-Future<List<Map<String, dynamic>>> getRaceAbilities(int raceId) async {
-  try {
-    final conn = await DatabaseHelper().connection;
+      var results = await conn.query(
+        'SELECT r.id AS race_id, r.name AS race_name, '
+        'IFNULL(a.id, "") AS ability_id, '
+        'IFNULL(a.name, "choose one ability") AS ability_name, '
+        'pra.value '
+        'FROM path_race_ability pra '
+        'JOIN path_race r ON pra.race_id = r.id '
+        'LEFT JOIN path_ability a ON pra.ability_id = a.id ' // Cambiato in LEFT JOIN
+        'WHERE pra.race_id = ?',
+        [raceId]
+      );
 
-    var results = await conn.query(
-      'SELECT r.id AS race_id, r.name AS race_name, '
-      'IFNULL(a.id, "") AS ability_id, '
-      'IFNULL(a.name, "choose one ability") AS ability_name, '
-      'pra.value '
-      'FROM path_race_ability pra '
-      'JOIN path_race r ON pra.race_id = r.id '
-      'LEFT JOIN path_ability a ON pra.ability_id = a.id ' // Cambiato in LEFT JOIN
-      'WHERE pra.race_id = ?',
-      [raceId]
-    );
-
-    return results
-        .map((row) => {
-              'race_id': row['race_id'],
-              'race_name': row['race_name'],
-              'ability_id': row['ability_id'],
-              'ability_name': row['ability_name'],
-              'value': row['value']
-            })
-        .toList();
-  } catch (e) {
-    throw Exception('Errore nel recupero delle abilità per la razza: $e');
+      return results
+          .map((row) => {
+                'race_id': row['race_id'],
+                'race_name': row['race_name'],
+                'ability_id': row['ability_id'],
+                'ability_name': row['ability_name'],
+                'value': row['value']
+              })
+          .toList();
+    } catch (e) {
+      throw Exception('Errore nel recupero delle abilità per la razza: $e');
+    }
   }
-}
 
-Future<List<Map<String, dynamic>>> getRacesByAbility(int abilityId) async {
-  try {
-    final conn = await DatabaseHelper().connection;
+  Future<List<Map<String, dynamic>>> getRacesByAbility(int abilityId) async {
+    try {
+      final conn = await DatabaseHelper().connection;
 
-    var results = await conn.query(
-      'SELECT r.id AS race_id, r.name AS race_name, '
-      'IFNULL(a.id, "") AS ability_id, '
-      'IFNULL(a.name, "choose one ability") AS ability_name, '
-      'pra.value '
-      'FROM path_race_ability pra '
-      'JOIN path_race r ON pra.race_id = r.id '
-      'LEFT JOIN path_ability a ON pra.ability_id = a.id ' // Cambiato in LEFT JOIN
-      'WHERE pra.ability_id = ?',
-      [abilityId]
-    );
+      var results = await conn.query(
+        'SELECT r.id AS race_id, r.name AS race_name, '
+        'IFNULL(a.id, "") AS ability_id, '
+        'IFNULL(a.name, "choose one ability") AS ability_name, '
+        'pra.value '
+        'FROM path_race_ability pra '
+        'JOIN path_race r ON pra.race_id = r.id '
+        'LEFT JOIN path_ability a ON pra.ability_id = a.id ' // Cambiato in LEFT JOIN
+        'WHERE pra.ability_id = ?',
+        [abilityId]
+      );
 
-    return results
-        .map((row) => {
-              'race_id': row['race_id'],
-              'race_name': row['race_name'],
-              'ability_id': row['ability_id'],
-              'ability_name': row['ability_name'],
-              'value': row['value']
-            })
-        .toList();
-  } catch (e) {
-    throw Exception('Errore nel recupero delle razze per l\'abilità: $e');
+      return results
+          .map((row) => {
+                'race_id': row['race_id'],
+                'race_name': row['race_name'],
+                'ability_id': row['ability_id'],
+                'ability_name': row['ability_name'],
+                'value': row['value']
+              })
+          .toList();
+    } catch (e) {
+      throw Exception('Errore nel recupero delle razze per l\'abilità: $e');
+    }
   }
-}
 
 }
 

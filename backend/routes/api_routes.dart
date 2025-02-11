@@ -83,13 +83,18 @@ Router defineApiRoutes() {
   router.get('/ability/{id}',(Request request, String id) async =>abilityController.getAbilityById(request, id));
 
 
-// Classi
-router.post('/class/add', (Request request) async => classController.addClass(request));
-router.post('/class/edit', (Request request) async => classController.editClass(request));
-router.post('/class/inactivate', (Request request) async => classController.inactivateClass(request));
-router.get('/class/list', (Request request) async => classController.getAllClasses(request));
-router.get('/class/<id>', (Request request, String id) async => classController.getClassById(request, id));
+  // Classi
+  router.post('/class/add', (Request request) async => classController.addClass(request));
+  router.post('/class/edit', (Request request) async => classController.editClass(request));
+  router.post('/class/inactivate', (Request request) async => classController.inactivateClass(request));
+  router.get('/class/list', (Request request) async => classController.getAllClasses(request));
+  router.get('/class/<id>', (Request request, String id) async => classController.getClassById(request, id));
 
+  // Routes per i livelli delle classi
+  router.post('/class/level/add', (Request request) async => classController.addClassLevel(request));
+  router.post('/class/level/remove', (Request request) async => classController.removeClassLevel(request));
+  router.get('/class/level/list/<classId>', (Request request, String classId) async => classController.getClassLevels(request, classId));
+  router.get('/class/level/<classId>/<level>', (Request request, String classId, String level) async => classController.getClassLevel(request, classId, level));
 
 
   return router;
