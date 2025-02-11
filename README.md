@@ -673,7 +673,7 @@ Risposta JSON:
     }
   ]
 }
-
+```
 ### **39. Recuperare i Dettagli di un Livello Specifico di una Classe**
 Endpoint: GET /classes/level/{classId}/{level}
 
