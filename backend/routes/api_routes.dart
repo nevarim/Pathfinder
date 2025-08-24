@@ -21,46 +21,24 @@ Router defineApiRoutes() {
   final router = Router();
 
   // Autenticazione
-  router.post(
-      '/register', (Request request) async => authController.register(request));
-  router.post(
-      '/login', (Request request) async => authController.login(request));
-  router.post(
-      '/logout', (Request request) async => authController.logout(request));
-  router.get('/user/get-by-email/<email>',
-      (Request request, String email) => authController.getUserByEmail(email));
-  router.get(
-      '/user/get-by-username/<username>',
-      (Request request, String username) =>
-          authController.getUserByUsername(username));
-  router.post('/user-settings/update',
-      (Request request) async => authController.updateUserSettings(request));
+  router.post('/register', (Request request) async => authController.register(request));
+  router.post('/login', (Request request) async => authController.login(request));
+  router.post('/logout', (Request request) async => authController.logout(request));
+  router.get('/user/get-by-email/<email>',(Request request, String email) => authController.getUserByEmail(email));
+  router.get('/user/get-by-username/<username>', (Request request, String username) => authController.getUserByUsername(username));
+  router.post('/user-settings/update',(Request request) async => authController.updateUserSettings(request));
 
   // Permessi
-  router.post('/permissions/add',
-      (Request request) async => permissionController.addPermission(request));
-  router.post('/permissions/edit',
-      (Request request) async => permissionController.editPermission(request));
+  router.post('/permissions/add', (Request request) async => permissionController.addPermission(request));
+  router.post('/permissions/edit', (Request request) async => permissionController.editPermission(request));
   router.post(
-      '/permissions/disable',
-      (Request request) async =>
-          permissionController.disablePermission(request));
-  router.post('/permissions/get-id',
-      (Request request) async => permissionController.getPermissionId(request));
+      '/permissions/disable', (Request request) async =>          permissionController.disablePermission(request));
+  router.post('/permissions/get-id', (Request request) async => permissionController.getPermissionId(request));
 
   // Permessi utente
-  router.post(
-      '/user-permissions/assign',
-      (Request request) async =>
-          userPermissionController.assignPermission(request));
-  router.post(
-      '/user-permissions/remove',
-      (Request request) async =>
-          userPermissionController.removePermission(request));
-  router.get(
-      '/user-permissions/<user_id>',
-      (Request request, String user_id) async =>
-          permissionController.getUserPermissions(request, user_id));
+  router.post('/user-permissions/assign',(Request request) async => userPermissionController.assignPermission(request));
+  router.post('/user-permissions/remove',(Request request) async => userPermissionController.removePermission(request));
+  router.get('/user-permissions/<user_id>', (Request request, String user_id) async => permissionController.getUserPermissions(request, user_id));
 
   // Razze
   router.post('/race/add', (Request request) async => raceController.addRace(request));
